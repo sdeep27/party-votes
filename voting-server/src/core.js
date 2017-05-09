@@ -25,6 +25,8 @@ export function next(state) {
   });
 };
 
-export function vote(state, item) {
-  return state.updateIn(['vote', 'tally', item], (item = 0) => ++item);
+export function vote(voteState, item) {
+  return voteState.updateIn(['tally', item], (item = 0) => ++item);
 }
+
+export const INITIAL_STATE = Map();

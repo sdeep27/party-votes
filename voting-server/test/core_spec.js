@@ -80,47 +80,34 @@ describe('core functions', () => {
     });
   });
   describe('vote', () => {
-    const state = Map({
-      vote: Map({
-        pair: List.of('Interstellar, Dark Knight'),
-        tally: Map()
-      }),
-      entries: List.of('Mary Jane')
-    })
     it('should increment tally when 0', () => {
+      const state = Map({
+        pair: List.of('Interstellar, Dark Knight'),   
+      })
       const nextState = vote(state, 'Interstellar');
       expect(nextState).to.equal(Map({
-        vote: Map({
         pair: List.of('Interstellar, Dark Knight'),
         tally: Map({
           'Interstellar': 1
         })
-      }),
-        entries: List.of('Mary Jane')
-      }));
+      }))
     });
     it('should increment when tally exists', () => {
       const state = Map({
-        vote: Map({
-          pair: List.of('Interstellar', 'Dark Knight'),
-          tally: Map({
-            'Interstellar': 3,
-            'Dark Knight': 2
-          })
-        }),
-        entries: List()
-      })
+        pair: List.of('Interstellar', 'Dark Knight'),
+        tally: Map({
+          'Interstellar': 3,
+          'Dark Knight': 2
+        })
+      });
       const nextState = vote(state, 'Dark Knight');
       expect(nextState).to.equal(Map({
-        vote: Map({
-          pair: List.of('Interstellar', 'Dark Knight'),
-          tally: Map({
-            'Interstellar': 3,
-            'Dark Knight': 3
-          })
-        }),
-        entries: List()
+        pair: List.of('Interstellar', 'Dark Knight'),
+        tally: Map({
+          'Interstellar': 3,
+          'Dark Knight': 3
+        })
       }));
     });
   });
-});
+})
