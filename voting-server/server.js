@@ -4,7 +4,7 @@ export default function startServer(store) {
   const io = new Server().attach(8090);
 
   //subscriber to the redux store, will emit JS version of state to the all connected
-  //socket clients on any changes to the state
+  //socket clients anytime a action is dispatched
   store.subscribe(() => io.emit('state', store.getState().toJS()))
   
   //we also need all new connections to be updated on the app state
